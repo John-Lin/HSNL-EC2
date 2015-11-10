@@ -3,6 +3,9 @@ FROM ubuntu:15.10
 
 MAINTAINER John Lin <linton.tw@gmail.com>
 
+# Replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 # Dev Tool
 RUN apt-get update && \
     apt-get install -qy --no-install-recommends git vim unzip wget curl
@@ -12,18 +15,22 @@ RUN apt-get install -qy --no-install-recommends python-setuptools python-pip && 
       pip install -U pip
 
 # Ruby 2.2.3 with RVM
+ENV RVM_DIR /usr/local/rvm/bin/rvm
+ENV RUBY_VERSION 2.2.3
+
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
-    curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.3
+    curl -sSL https://get.rvm.io | bash -s stable --ruby=$RUBY_VERSION && \
+    $RVM_DIR use $RUBY_VERSION --default
 
-RUN . /usr/local/rvm/scripts/rvm && \
-    rvm use 2.2.3 --default
+# Nodejs 5.0 with NVM
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 5.0
 
-# Nodejs 5.x
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
-
-RUN . /root/.nvm/nvm.sh && \
-    nvm install 5.0 && \
-    nvm use 5.0
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash && \
+    source $NVM_DIR/nvm.sh && \
+    nvm install $NODE_VERSION && \
+    nvm alias default $NODE_VERSION && \
+    nvm use default
 
 # SSH configure
 RUN apt-get install -y openssh-server
