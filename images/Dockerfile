@@ -12,15 +12,18 @@ RUN apt-get install -qy --no-install-recommends python-setuptools python-pip && 
       pip install -U pip
 
 # Ruby 2.2.3 with RVM
-RUN apt-get install -qy --no-install-recommends libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
-    gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
-    curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.3 && \
-    source /usr/local/rvm/scripts/rvm && \
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
+    curl -sSL https://get.rvm.io | bash -s stable --ruby=2.2.3
+
+RUN . /usr/local/rvm/scripts/rvm && \
     rvm use 2.2.3 --default
 
 # Nodejs 5.x
-RUN curl -sL https://deb.nodesource.com/setup_5.x | bash - && \
-    apt-get install -y nodejs
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
+
+RUN . /root/.nvm/nvm.sh && \
+    nvm install 5.0 && \
+    nvm use 5.0
 
 # SSH configure
 RUN apt-get install -y openssh-server
