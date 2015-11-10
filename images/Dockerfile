@@ -5,14 +5,14 @@ MAINTAINER John Lin <linton.tw@gmail.com>
 
 # Dev Tool
 RUN apt-get update && \
-    apt-get install git vim unzip wget curl
+    apt-get install -qy --no-install-recommends git vim unzip wget curl
 
 # Python
 RUN apt-get install -qy --no-install-recommends python-setuptools python-pip && \
       pip install -U pip
 
 # Ruby 2.2.4 with RVM
-RUN apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
+RUN apt-get install -qy --no-install-recommends libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
     curl -L https://get.rvm.io | bash -s stable && \
     source ~/.rvm/scripts/rvm && \
     rvm install 2.2.3 && \
