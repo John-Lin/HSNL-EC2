@@ -9,7 +9,7 @@ RUN apt-get update && \
 
 # Python
 RUN apt-get install -qy --no-install-recommends python-setuptools python-pip && \
-      pip install -U pip && \
+      pip install -U pip
 
 # Ruby 2.2.4 with RVM
 RUN apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev && \
