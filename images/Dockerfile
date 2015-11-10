@@ -15,7 +15,7 @@ RUN apt-get install -qy --no-install-recommends python-setuptools python-pip && 
       pip install -U pip
 
 # Ruby 2.2.3 with RVM
-ENV RVM_DIR /usr/local/rvm/bin
+ENV RVM_DIR /usr/local/rvm/scripts
 ENV RUBY_VERSION 2.2.3
 
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
