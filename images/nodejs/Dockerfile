@@ -11,14 +11,22 @@ RUN apt-get update && \
     apt-get install -qy --no-install-recommends git vim unzip wget curl tcpdump openssh-server
 
 # Nodejs 5.1 with NVM
-ENV NVM_DIR /usr/local/nvm
+# ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 5.1
 
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash && \
-    source $NVM_DIR/nvm.sh && \
+RUN git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags` && \
+    . ~/.nvm/nvm.sh && \
+    echo "export NVM_DIR=\"$HOME/.nvm\"" && \
+    echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> /home/user/.bashrc && \
     nvm install $NODE_VERSION && \
     nvm alias default $NODE_VERSION && \
     nvm use default
+
+# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash && \
+#     source $NVM_DIR/nvm.sh && \
+#     nvm install $NODE_VERSION && \
+#     nvm alias default $NODE_VERSION && \
+#     nvm use default
 
 # SSH configure
 RUN mkdir /var/run/sshd
