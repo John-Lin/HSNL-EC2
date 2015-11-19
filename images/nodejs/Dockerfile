@@ -16,8 +16,8 @@ ENV NODE_VERSION 5.1
 
 RUN git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags` && \
     . ~/.nvm/nvm.sh && \
-    echo "export NVM_DIR=\"$HOME/.nvm\"" && \
-    echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> /home/user/.bashrc && \
+    echo "export NVM_DIR=\"$HOME/.nvm\"" >> /root/.bashrc && \
+    echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> /root/.bashrc && \
     nvm install $NODE_VERSION && \
     nvm alias default $NODE_VERSION && \
     nvm use default
