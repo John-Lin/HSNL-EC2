@@ -23,9 +23,9 @@ RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A170311380
     source $RVM_DIR/rvm
     # rvm --default use $RUBY_VERSION
 
-# Nodejs 5.0 with NVM
+# Nodejs 5.1 with NVM
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 5.0
+ENV NODE_VERSION 5.1
 
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash && \
     source $NVM_DIR/nvm.sh && \
