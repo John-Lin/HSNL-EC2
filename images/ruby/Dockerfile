@@ -8,7 +8,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Dev Tool
 RUN apt-get update && \
-    apt-get install -qy --no-install-recommends git vim unzip wget curl tcpdump openssh-server
+    apt-get install -qy --no-install-recommends git vim unzip wget curl tcpdump openssh-server ca-certificates
 
 # Ruby 2.2.3 with RVM
 ENV RVM_DIR /usr/local/rvm/scripts
