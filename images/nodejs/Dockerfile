@@ -8,7 +8,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Dev Tool
 RUN apt-get update && \
-    apt-get install -qy --no-install-recommends git vim unzip wget curl tcpdump build-essential gcc g++ openssh-server ca-certificates
+    apt-get install -qy --no-install-recommends git vim unzip wget curl tcpdump build-essential gcc g++ python-setuptools openssh-server ca-certificates
 
 # Nodejs 5.1 with NVM
 # ENV NVM_DIR /usr/local/nvm
