@@ -22,12 +22,6 @@ RUN git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git c
     nvm alias default $NODE_VERSION && \
     nvm use default
 
-# RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash && \
-#     source $NVM_DIR/nvm.sh && \
-#     nvm install $NODE_VERSION && \
-#     nvm alias default $NODE_VERSION && \
-#     nvm use default
-
 # SSH configure
 RUN mkdir /var/run/sshd
 
